@@ -9,6 +9,11 @@ class AlbumServicio {
     {
         return Album::with(['artist'])->orderBy('Title')->get();
     }
+    /**
+     * Esta funcion lista por el numero de artista
+     * @param int $artistId el numero de artista
+     * @return mixed un listado de valores.
+     */
     public function listarFiltrado($artistId) 
     {
         return Album::with(['artist'])->where('ArtistId',$artistId)->orderBy('Title')->get();
