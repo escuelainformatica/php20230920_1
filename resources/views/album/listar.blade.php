@@ -11,7 +11,7 @@
     @foreach($albumes as $al)
     
     <tr>
-        <td>{{$al->Title}}</td>
+        <td>{{$al->Title}} <a href="/album/actualizar/{{$al->AlbumId}}">Editar</a></td>
         <td>{{$al->artist->Name}}</td>
     </tr>
 

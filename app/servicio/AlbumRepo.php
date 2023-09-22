@@ -1,7 +1,12 @@
 <?php
 namespace App\servicio;
 use App\Models\Album;
-class AlbumServicio {
+
+// clase de repositorio
+// clase ado (activa data object)
+// clase dao (Data object)
+
+class AlbumRepo {
     /**
      * Esta funcion regresa un listado de album con los artistas ordenado por el titulo de los albumes.
      */
@@ -17,5 +22,21 @@ class AlbumServicio {
     public function listarFiltrado($artistId) 
     {
         return Album::with(['artist'])->where('ArtistId',$artistId)->orderBy('Title')->get();
+    }
+    public function insertar(Album $album):bool
+    {
+        return $album->save();
+    }
+    public function obtener(int $AlbumId):?Album // Album o nulo (?) si no se encontro el valor.
+    {
+        return Album::find($AlbumId);
+    }
+    public function actualizar(Album $album):bool
+    {        
+        
+        $antiguo=Album::find($album->AlbumId);
+        $antiguo->Title=$album->Title;
+        $antiguo->ArtistId=$album->ArtistId;
+        return $antiguo->save();
     }
 }
